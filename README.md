@@ -1,2 +1,2 @@
 # training
-Demo code for training.
+Demo code for PHP training presentations.
