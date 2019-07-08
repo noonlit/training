@@ -444,7 +444,7 @@ function matchesWordsPrefixedWithConThatAreConcealedOrContorted($string)
 function matchesDeadExceptWhenNotDead($string)
 {
     // negative lookbehind
-    return preg_match('/(?<!not )dead/', $string) == 1;
+    return preg_match('/(?<!not )dead/', $string) === 1;
 }
 
 //writeBoolean(matchesDeadExceptWhenNotDead('not dead'));
@@ -458,7 +458,7 @@ function matchesDeadExceptWhenNotDead($string)
 function matchesDystopiaOrUtopia($string)
 {
     // positive lookbehind
-    return preg_match('/(?<=dys|u)topia/', $string) == 1;
+    return preg_match('/(?<=dys|u)topia/', $string) === 1;
 }
 
 //writeBoolean(matchesDystopiaOrUtopia('dystopia'));
