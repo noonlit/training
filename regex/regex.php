@@ -573,7 +573,7 @@ function extractEmails($string)
     return $matches;
 }
 
-writeArray(extractEmails('These are my emails: old_one@abyss.com, nightmother@spacetime.org'));
+//writeArray(extractEmails('These are my emails: old_one@abyss.com, nightmother@spacetime.org'));
 
 /**
  * @param $string
