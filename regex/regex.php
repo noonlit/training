@@ -32,12 +32,12 @@ require 'util.php';
  */
 function matchesItself($string)
 {
-    return preg_match("/{$string}/", $string) == 1;
+    return preg_match("/{$string}/", $string) === 1;
 }
 
 $string = 'Cthulhu';
 //writeBoolean(matchesItself($string));
-//writeBoolean(strcmp($string, $string) == 0);
+//writeBoolean(strcmp($string, $string) === 0);
 
 
 /**************************************************************************************
@@ -49,7 +49,7 @@ $string = 'Cthulhu';
  */
 function matchesItselfInquisitively($string)
 {
-    return preg_match("/{$string}\?/", $string) == 1;
+    return preg_match("/{$string}\?/", $string) === 1;
 }
 
 //writeBoolean(matchesItselfInquisitively('Cthulhu?'));
@@ -64,7 +64,7 @@ function matchesItselfInquisitively($string)
  */
 function matchesMultipleWords($string)
 {
-    return preg_match('/hideous|shadowy|infernal/', $string) == 1;
+    return preg_match('/hideous|shadowy|infernal/', $string) === 1;
 }
 
 //writeBoolean(matchesMultipleWords('hideous'));
@@ -83,7 +83,7 @@ function matchesMultipleWords($string)
 function matchesRangeOfAlphanumericCharacters($string)
 {
     // matches a single character in the list [a-zA-Z0-9_]
-    return preg_match('/[a-zA-Z0-9_]/', $string) == 1;
+    return preg_match('/[a-zA-Z0-9_]/', $string) === 1;
 }
 
 //writeBoolean(matchesRangeOfAlphaNumericCharacters('tentacle'));
@@ -97,7 +97,7 @@ function matchesRangeOfAlphanumericCharacters($string)
 function matchesAnythingButAlphanumericCharacters($string)
 {
     // matches a single character NOT in the list [a-zA-Z0-9_] (note the ^, signifying the negation)
-    return preg_match('/[^a-zA-Z0-9_]/', $string) == 1;
+    return preg_match('/[^a-zA-Z0-9_]/', $string) === 1;
 }
 
 //writeBoolean(matchesAnythingButAlphaNumericCharacters('green'));
@@ -111,7 +111,7 @@ function matchesAnythingButAlphanumericCharacters($string)
 function matchesWordVariants($string)
 {
     // matches 'bat', 'bet', 'bit', 'bot', and 'but'
-    return preg_match('/b[aeiou]t/', $string) == 1;
+    return preg_match('/b[aeiou]t/', $string) === 1;
 }
 
 //writeBoolean(matchesWordVariants('bat'));
@@ -129,7 +129,7 @@ function matchesWordVariants($string)
 function matchesAnyCharacterAndAWordCharacter($string)
 {
     // note that \w is equivalent to [a-zA-Z0-9_]
-    return preg_match('/.\w/', $string) == 1;
+    return preg_match('/.\w/', $string) === 1;
 }
 
 //writeBoolean(matchesAnyCharacterAndAWordCharacter('?'));
@@ -143,7 +143,7 @@ function matchesAnyCharacterAndAWordCharacter($string)
 function matchesAnyDigit($string)
 {
     // note that \d is equivalent to [0-9]
-    return preg_match('/\d/', $string) == 1;
+    return preg_match('/\d/', $string) === 1;
 }
 
 //writeBoolean(matchesAnyDigit('9'));
@@ -155,7 +155,7 @@ function matchesAnyDigit($string)
  */
 function matchesTwoNonWhitespacesAndOneWhitespace($string)
 {
-    return preg_match('/\S\S\s/', $string) == 1;
+    return preg_match('/\S\S\s/', $string) === 1;
 }
 
 //writeBoolean(matchesTwoNonWhitespacesAndOneWhitespace(' oh'));
@@ -174,7 +174,7 @@ function matchesTwoNonWhitespacesAndOneWhitespace($string)
  */
 function matchesPluralOptionally($string)
 {
-    return preg_match("/{$string}s?/", $string) == 1;
+    return preg_match("/{$string}s?/", $string) === 1;
 }
 
 //writeBoolean(matchesPluralOptionally('creature'));
@@ -186,7 +186,7 @@ function matchesPluralOptionally($string)
  */
 function matchesWhitespaceZeroOrMoreTimes($string)
 {
-    return preg_match("/\s*/", $string) == 1;
+    return preg_match("/\s*/", $string) === 1;
 }
 
 //writeBoolean(matchesWhitespaceZeroOrMoreTimes('strange'));
@@ -198,11 +198,11 @@ function matchesWhitespaceZeroOrMoreTimes($string)
  */
 function matchesDigitAtLeastOnce($string)
 {
-    return preg_match("/\d+/", $string) == 1;
+    return preg_match("/\d+/", $string) === 1;
 }
 
 //writeBoolean(matchesDigitAtLeastOnce('1'));
-//writeBoolean(matchesDigitAtLeastOnce('string'));
+//writeBoolean(matchesDigitAtLeastOnce('nightmare'));
 
 /**
  * Note that this function returns the matches for the pattern!
@@ -210,7 +210,7 @@ function matchesDigitAtLeastOnce($string)
  * @param string $string
  * @return array
  */
-function matchesQuoteNonGreedily($string)
+function extractMatchesForQuoteNonGreedily($string)
 {
     // to make multipliers non-greedy, add a '?' to them
     preg_match('/".*?"/', $string, $matches);
@@ -218,7 +218,7 @@ function matchesQuoteNonGreedily($string)
     return $matches;
 }
 
-//writeArray(matchesQuoteNonGreedily('"In his house at R’lyeh dead Cthulhu waits dreaming," he said. "You know?"'));
+//writeArray(extractMatchesForQuoteNonGreedily('"In his house at R’lyeh dead Cthulhu waits dreaming," he said. "You know?"'));
 
 /**
  * @param string $string
@@ -226,7 +226,7 @@ function matchesQuoteNonGreedily($string)
  */
 function matchesThreeWordCharacters($string)
 {
-    return preg_match('/\w{3}/', $string) == 1;
+    return preg_match('/\w{3}/', $string) === 1;
 }
 
 //writeBoolean(matchesThreeWordCharacters('no'));
@@ -239,7 +239,7 @@ function matchesThreeWordCharacters($string)
  */
 function matchesBetweenThreeAndFiveDigits($string)
 {
-    return preg_match('/\d{3,5}/', $string) == 1;
+    return preg_match('/\d{3,5}/', $string) === 1;
 }
 
 //writeBoolean(matchesBetweenThreeAndFiveDigits('12'));
@@ -252,7 +252,7 @@ function matchesBetweenThreeAndFiveDigits($string)
  */
 function matchesVariantSpellingOfColour($string)
 {
-    return preg_match('/colou{0,1}r/', $string) == 1;
+    return preg_match('/colou{0,1}r/', $string) === 1;
 }
 
 //writeBoolean(matchesVariantSpellingOfColour('color'));
@@ -269,7 +269,7 @@ function matchesVariantSpellingOfColour($string)
  */
 function matchesWordCaseInsensitive($string)
 {
-    return preg_match("/word/i", $string) == 1;
+    return preg_match("/word/i", $string) === 1;
 }
 
 //writeBoolean(matchesWordCaseInsensitive('word'));
@@ -300,7 +300,7 @@ function extractAllLetters($string)
  */
 function matchesDashAtBeginningAndEnd($string)
 {
-    return preg_match('/^-\w*-$/', $string) == 1;
+    return preg_match('/^-\w*-$/', $string) === 1;
 }
 
 //writeBoolean(matchesDashAtBeginningAndEnd('-cryptic-'));
@@ -399,7 +399,7 @@ function matchesWordsCloseToEachOther(array $words, $text, $distance)
 
     $pattern .= ')\b/';
 
-    return preg_match($pattern, $text) == 1;
+    return preg_match($pattern, $text) === 1;
 }
 
 $text = 'all traces of such things are wholly overshadowed by a potent and inborn sense of the spectral, the morbid, and the horrible';
@@ -417,7 +417,7 @@ $text = 'all traces of such things are wholly overshadowed by a potent and inbor
 function matchesWordsPrefixedWithMidExceptMidnight($string)
 {
     // negative lookahead
-    return preg_match('/mid(?!night)/', $string) == 1;
+    return preg_match('/mid(?!night)/', $string) === 1;
 }
 
 //writeBoolean(matchesWordsPrefixedWithMidExceptMidnight('midnight'));
@@ -430,7 +430,7 @@ function matchesWordsPrefixedWithMidExceptMidnight($string)
 function matchesWordsPrefixedWithConThatAreConcealedOrContorted($string)
 {
     // positive lookahead
-    return preg_match('/con(?=cealed|torted)/', $string) == 1;
+    return preg_match('/con(?=cealed|torted)/', $string) === 1;
 }
 
 //writeBoolean(matchesWordsPrefixedWithConThatAreConcealedOrContorted('concealed'));
@@ -481,7 +481,7 @@ function matchesDystopiaOrUtopia($string)
  */
 function matchesWithUnicodeSupport($string)
 {
-    return preg_match('/\w/u', $string) == 1;
+    return preg_match('/\w/u', $string) === 1;
 }
 
 //writeBoolean(matchesWithUnicodeSupport('Þ'));
@@ -492,7 +492,7 @@ function matchesWithUnicodeSupport($string)
  */
 function matchesAnyLetterInAnyLanguage($string)
 {
-    return preg_match('/\p{L}/', $string) == 1;
+    return preg_match('/\p{L}/', $string) === 1;
 }
 
 //writeBoolean(matchesAnyLetterInAnyLanguage('Iä!'));
@@ -503,7 +503,7 @@ function matchesAnyLetterInAnyLanguage($string)
  */
 function matchesMathematicalSymbol($character)
 {
-    return preg_match('/\p{Sm}*/u', $character) == 1;
+    return preg_match('/\p{Sm}*/u', $character) === 1;
 }
 
 //writeBoolean(matchesMathematicalSymbol('≈'));
@@ -516,17 +516,18 @@ function matchesMathematicalSymbol($character)
  * preg_grep() *
  ***************/
 
-//writeArray(preg_grep('/(css|js)/', array('portal.css', 'mortals.js', 'temple.php')));
-//writeArray(preg_grep('/(jpg|png)/', array('portal.css', 'mortals.js', 'temple.php'), PREG_GREP_INVERT));
+//writeArray(preg_grep('/(css|js)/', ['portal.css', 'mortals.js', 'temple.php']));
+//writeArray(preg_grep('/(jpg|png)/', ['portal.css', 'mortals.js', 'temple.php'], PREG_GREP_INVERT));
 
 
 /***********************************
  * preg_filter() && preg_replace() *
  ***********************************/
 
-//writeArray(preg_filter('/less/', 'ed', array('limitless', 'darkness', 'space')));
-//writeArray(preg_replace('/less/', 'ed', array('limitless', 'darkness', 'space')));
-//writeArray(str_replace('less', 'ed', array('limitless', 'darkness', 'space')));
+//writeArray(preg_filter('/less/', 'ed', ['limitless', 'darkness', 'space']));
+
+//writeArray(preg_replace('/less/', 'ed', ['limitless', 'darkness', 'space']));
+//writeArray(str_replace('less', 'ed', ['limitless', 'darkness', 'space']));
 
 
 /*****************
@@ -567,12 +568,12 @@ $string = 'the oldest and strongest kind of fear is fear of the unknown';
  */
 function extractEmails($string)
 {
-    preg_match_all('/\w+@\w+.\w{2,3}/', $string, $matches);
+    preg_match_all('/\w+@\w+\.\w{2,3}/', $string, $matches);
 
     return $matches;
 }
 
-//writeArray(extractEmails('These are my emails: old_one@abyss.com, nightmother@spacetime.org'));
+writeArray(extractEmails('These are my emails: old_one@abyss.com, nightmother@spacetime.org'));
 
 /**
  * @param $string
