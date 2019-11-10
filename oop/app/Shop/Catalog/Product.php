@@ -18,7 +18,6 @@ class Product extends ShopObject implements ProductInterface
 
     public function __construct(string $name, float $price)
     {
-        parent::__construct();
         $this->name  = $name;
         $this->price = $price;
     }
