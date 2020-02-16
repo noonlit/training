@@ -158,8 +158,8 @@ function matchesTwoNonWhitespacesAndOneWhitespace($string)
     return preg_match('/\S\S\s/', $string) === 1;
 }
 
-//writeBoolean(matchesTwoNonWhitespacesAndOneWhitespace(' oh'));
-//writeBoolean(matchesTwoNonWhitespacesAndOneWhitespace('oh '));
+//writeBoolean(matchesTwoNonWhitespacesAndOneWhitespace(' claw'));
+//writeBoolean(matchesTwoNonWhitespacesAndOneWhitespace('claw '));
 //writeBoolean(matchesTwoNonWhitespacesAndOneWhitespace(' '));
 //writeBoolean(matchesTwoNonWhitespacesAndOneWhitespace('      '));
 
@@ -212,8 +212,11 @@ function matchesDigitAtLeastOnce($string)
  */
 function extractMatchesForQuoteNonGreedily($string)
 {
-    // to make multipliers non-greedy, add a '?' to them
-    preg_match('/".*?"/', $string, $matches);
+    // normally, what you do to extract all matches is use the /g flag
+    // in PHP, the function to use is preg_match_all()
+
+    // to make multipliers non-greedy, add a '?'
+    preg_match_all('/".*?"/', $string, $matches);
 
     return $matches;
 }
@@ -281,8 +284,6 @@ function matchesWordCaseInsensitive($string)
  */
 function extractAllLetters($string)
 {
-    // normally, what you do to extract all matches is use the /g flag
-    // in PHP, the function to use is preg_match_all()
     preg_match_all('/[a-zA-Z]+/', $string, $matches);
     return $matches;
 }
@@ -346,7 +347,7 @@ function extractImageFileName($string)
  */
 function extractImageFileNameWithNamedPattern($string)
 {
-    preg_match('/^(?<image_name>\w+)\.(?:(?:png)|(?:jpg))$/', $string, $matches);
+    preg_match('/^(?<image_name>\w+)\.(?:png|jpg)$/', $string, $matches);
 
     return $matches;
 }
@@ -363,6 +364,7 @@ function extractLinesThatMatchWords(array $words, $text)
     $alternatives = implode('|', $words);
 
     $pattern = "/^.*\b({$alternatives})\b.*$/m";
+    echo $pattern . PHP_EOL;
 
     preg_match_all($pattern, $text, $matches);
 
@@ -373,38 +375,6 @@ $text = 'Asenath, it seemed, had posed as a kind of magician at school; and had 
 She professed to be able to raise thunderstorms, though her seeming success was generally laid to some uncanny knack at prediction.
 All animals markedly disliked her, and she could make any dog howl by certain motions of her right hand.';
 //writeArray(extractLinesThatMatchWords(array('marvels', 'motions'), $text));
-
-/**
- * @param array $words
- * @param string $text
- * @param int $distance
- * @return bool
- */
-function matchesWordsCloseToEachOther(array $words, $text, $distance)
-{
-    // compose pattern
-    // the end result for words 'foo' and 'bar' should look something like \b(?:foo\W+(?:\w+\W+){0,5}?bar)\b
-    // ... or maybe you have a better pattern :)
-    $wordCount = count($words);
-    $pattern = '/\b(?:';
-
-    foreach ($words as $i => $word) {
-        if ($i != ($wordCount - 1)) {
-            $pattern .= "{$word}\W+(?:\w+\W+){0,{$distance}}?";
-            continue;
-        }
-
-        $pattern .= $word;
-    }
-
-    $pattern .= ')\b/';
-
-    return preg_match($pattern, $text) === 1;
-}
-
-$text = 'all traces of such things are wholly overshadowed by a potent and inborn sense of the spectral, the morbid, and the horrible';
-//writeBoolean(matchesWordsCloseToEachOther(array('potent', 'spectral', 'horrible'), $text, 5));
-
 
 /****************************
  * Lookahead and lookbehind *
@@ -561,19 +531,6 @@ $string = 'the oldest and strongest kind of fear is fear of the unknown';
  * It's all fun and games ...                  *
  * Think of ways to improve the regexes below! *
  ************************************************/
-
-/**
- * @param string $string
- * @return array
- */
-function extractEmails($string)
-{
-    preg_match_all('/\w+@\w+\.\w{2,3}/', $string, $matches);
-
-    return $matches;
-}
-
-//writeArray(extractEmails('These are my emails: old_one@abyss.com, nightmother@spacetime.org'));
 
 /**
  * @param $string
