@@ -363,7 +363,7 @@ function extractLinesThatMatchWords(array $words, $text)
 {
     $alternatives = implode('|', $words);
 
-    $pattern = "/^.*\b({$alternatives})\b.*$/m";
+    $pattern = "/^.*\b(?:{$alternatives})\b.*$/m";
     echo $pattern . PHP_EOL;
 
     preg_match_all($pattern, $text, $matches);
@@ -374,7 +374,7 @@ function extractLinesThatMatchWords(array $words, $text)
 $text = 'Asenath, it seemed, had posed as a kind of magician at school; and had really seemed able to accomplish some highly baffling marvels. 
 She professed to be able to raise thunderstorms, though her seeming success was generally laid to some uncanny knack at prediction.
 All animals markedly disliked her, and she could make any dog howl by certain motions of her right hand.';
-//writeArray(extractLinesThatMatchWords(array('marvels', 'motions'), $text));
+writeArray(extractLinesThatMatchWords(array('marvels', 'motions'), $text));
 
 /****************************
  * Lookahead and lookbehind *
