@@ -502,6 +502,7 @@ function matchesMathematicalSymbol(string $character) : bool
 //writeArray(preg_replace('/less/', 'ed', ['limitless', 'darkness', 'space']));
 //writeArray(str_replace('less', 'ed', ['limitless', 'darkness', 'space']));
 
+// see also: https://regex101.com/r/U9U0lA/1/
 
 /*****************
  * preg_split() *
