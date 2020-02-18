@@ -30,7 +30,7 @@ require 'util.php';
  * @param string $string
  * @return bool
  */
-function matchesItself($string)
+function matchesItself(string $string) : bool
 {
     return preg_match("/{$string}/", $string) === 1;
 }
@@ -47,7 +47,7 @@ $string = 'Cthulhu';
  * @param string $string
  * @return bool
  */
-function matchesItselfInquisitively($string)
+function matchesItselfInquisitively(string $string) : bool
 {
     return preg_match("/{$string}\?/", $string) === 1;
 }
@@ -62,7 +62,7 @@ function matchesItselfInquisitively($string)
  * @param string $string
  * @return bool
  */
-function matchesMultipleWords($string)
+function matchesMultipleWords(string $string) : bool
 {
     return preg_match('/hideous|shadowy|infernal/', $string) === 1;
 }
@@ -78,9 +78,9 @@ function matchesMultipleWords($string)
 
 /**
  * @param string $string
- * @return false|int
+ * @return bool
  */
-function matchesRangeOfAlphanumericCharacters($string)
+function matchesRangeOfAlphanumericCharacters(string $string) : bool
 {
     // matches a single character in the list [a-zA-Z0-9_]
     return preg_match('/[a-zA-Z0-9_]/', $string) === 1;
@@ -94,7 +94,7 @@ function matchesRangeOfAlphanumericCharacters($string)
  * @param string string
  * @return bool
  */
-function matchesAnythingButAlphanumericCharacters($string)
+function matchesAnythingButAlphanumericCharacters(string $string) : bool
 {
     // matches a single character NOT in the list [a-zA-Z0-9_] (note the ^, signifying the negation)
     return preg_match('/[^a-zA-Z0-9_]/', $string) === 1;
@@ -108,7 +108,7 @@ function matchesAnythingButAlphanumericCharacters($string)
  * @param string $string
  * @return bool
  */
-function matchesWordVariants($string)
+function matchesWordVariants(string $string) : bool
 {
     // matches 'bat', 'bet', 'bit', 'bot', and 'but'
     return preg_match('/b[aeiou]t/', $string) === 1;
@@ -126,7 +126,7 @@ function matchesWordVariants($string)
  * @param $string
  * @return bool
  */
-function matchesAnyCharacterAndAWordCharacter($string)
+function matchesAnyCharacterAndAWordCharacter(string $string) : bool
 {
     // note that \w is equivalent to [a-zA-Z0-9_]
     return preg_match('/.\w/', $string) === 1;
@@ -140,7 +140,7 @@ function matchesAnyCharacterAndAWordCharacter($string)
  * @param $string
  * @return bool
  */
-function matchesAnyDigit($string)
+function matchesAnyDigit(string $string) : bool
 {
     // note that \d is equivalent to [0-9]
     return preg_match('/\d/', $string) === 1;
@@ -153,7 +153,7 @@ function matchesAnyDigit($string)
  * @param $string
  * @return bool
  */
-function matchesTwoNonWhitespacesAndOneWhitespace($string)
+function matchesTwoNonWhitespacesAndOneWhitespace(string $string) : bool
 {
     return preg_match('/\S\S\s/', $string) === 1;
 }
@@ -172,7 +172,7 @@ function matchesTwoNonWhitespacesAndOneWhitespace($string)
  * @param string $string
  * @return bool
  */
-function matchesPluralOptionally($string)
+function matchesPluralOptionally(string $string) : bool
 {
     return preg_match("/{$string}s?/", $string) === 1;
 }
@@ -184,7 +184,7 @@ function matchesPluralOptionally($string)
  * @param string $string
  * @return bool
  */
-function matchesWhitespaceZeroOrMoreTimes($string)
+function matchesWhitespaceZeroOrMoreTimes(string $string) : bool
 {
     return preg_match("/\s*/", $string) === 1;
 }
@@ -196,7 +196,7 @@ function matchesWhitespaceZeroOrMoreTimes($string)
  * @param string $string
  * @return bool
  */
-function matchesDigitAtLeastOnce($string)
+function matchesDigitAtLeastOnce(string $string) : bool
 {
     return preg_match("/\d+/", $string) === 1;
 }
@@ -210,7 +210,7 @@ function matchesDigitAtLeastOnce($string)
  * @param string $string
  * @return array
  */
-function extractMatchesForQuoteNonGreedily($string)
+function extractMatchesForQuoteNonGreedily(string $string) : array
 {
     // normally, what you do to extract all matches is use the /g flag
     // in PHP, the function to use is preg_match_all()
@@ -227,7 +227,7 @@ function extractMatchesForQuoteNonGreedily($string)
  * @param string $string
  * @return bool
  */
-function matchesThreeWordCharacters($string)
+function matchesThreeWordCharacters(string $string) : bool
 {
     return preg_match('/\w{3}/', $string) === 1;
 }
@@ -240,7 +240,7 @@ function matchesThreeWordCharacters($string)
  * @param string $string
  * @return bool
  */
-function matchesBetweenThreeAndFiveDigits($string)
+function matchesBetweenThreeAndFiveDigits(string $string) : bool
 {
     return preg_match('/\d{3,5}/', $string) === 1;
 }
@@ -253,7 +253,7 @@ function matchesBetweenThreeAndFiveDigits($string)
  * @param string $string
  * @return bool
  */
-function matchesVariantSpellingOfColour($string)
+function matchesVariantSpellingOfColour(string $string) : bool
 {
     return preg_match('/colou{0,1}r/', $string) === 1;
 }
@@ -270,7 +270,7 @@ function matchesVariantSpellingOfColour($string)
  * @param string $string
  * @return bool
  */
-function matchesWordCaseInsensitive($string)
+function matchesWordCaseInsensitive(string $string) : bool
 {
     return preg_match("/word/i", $string) === 1;
 }
@@ -282,7 +282,7 @@ function matchesWordCaseInsensitive($string)
  * @param string $string
  * @return array
  */
-function extractAllLetters($string)
+function extractAllLetters(string $string) : array
 {
     preg_match_all('/[a-zA-Z]+/', $string, $matches);
     return $matches;
@@ -299,7 +299,7 @@ function extractAllLetters($string)
  * @param string $string
  * @return bool
  */
-function matchesDashAtBeginningAndEnd($string)
+function matchesDashAtBeginningAndEnd(string $string) : bool
 {
     return preg_match('/^-\w*-$/', $string) === 1;
 }
@@ -312,7 +312,7 @@ function matchesDashAtBeginningAndEnd($string)
  * @param string $string
  * @return array
  */
-function extractAllFiveLetterWords($string)
+function extractAllFiveLetterWords(string $string) : array
 {
     // the \b (or word boundary): "whole words only" search
     preg_match_all('/\b\w{5}\b/', $string, $matches);
@@ -331,7 +331,7 @@ function extractAllFiveLetterWords($string)
  * @param string $string
  * @return array
  */
-function extractImageFileName($string)
+function extractImageFileName(string $string) : array
 {
     preg_match('/^(\w+)\.(?:(?:png)|(?:jpg))$/', $string, $matches);
 
@@ -345,7 +345,7 @@ function extractImageFileName($string)
  * @param string $string
  * @return array
  */
-function extractImageFileNameWithNamedPattern($string)
+function extractImageFileNameWithNamedPattern(string $string) : array
 {
     preg_match('/^(?<image_name>\w+)\.(?:png|jpg)$/', $string, $matches);
 
@@ -359,7 +359,7 @@ function extractImageFileNameWithNamedPattern($string)
  * @param string $text
  * @return array
  */
-function extractLinesThatMatchWords(array $words, $text)
+function extractLinesThatMatchWords(array $words, $text) : array
 {
     $alternatives = implode('|', $words);
 
@@ -374,7 +374,7 @@ function extractLinesThatMatchWords(array $words, $text)
 $text = 'Asenath, it seemed, had posed as a kind of magician at school; and had really seemed able to accomplish some highly baffling marvels. 
 She professed to be able to raise thunderstorms, though her seeming success was generally laid to some uncanny knack at prediction.
 All animals markedly disliked her, and she could make any dog howl by certain motions of her right hand.';
-writeArray(extractLinesThatMatchWords(array('marvels', 'motions'), $text));
+//writeArray(extractLinesThatMatchWords(array('marvels', 'motions'), $text));
 
 /****************************
  * Lookahead and lookbehind *
@@ -384,7 +384,7 @@ writeArray(extractLinesThatMatchWords(array('marvels', 'motions'), $text));
  * @param string $string
  * @return bool
  */
-function matchesWordsPrefixedWithMidExceptMidnight($string)
+function matchesWordsPrefixedWithMidExceptMidnight(string $string) : bool
 {
     // negative lookahead
     return preg_match('/mid(?!night)/', $string) === 1;
@@ -397,7 +397,7 @@ function matchesWordsPrefixedWithMidExceptMidnight($string)
  * @param string $string
  * @return bool
  */
-function matchesWordsPrefixedWithConThatAreConcealedOrContorted($string)
+function matchesWordsPrefixedWithConThatAreConcealedOrContorted(string $string) : bool
 {
     // positive lookahead
     return preg_match('/con(?=cealed|torted)/', $string) === 1;
@@ -411,7 +411,7 @@ function matchesWordsPrefixedWithConThatAreConcealedOrContorted($string)
  * @param string $string
  * @return bool
  */
-function matchesDeadExceptWhenNotDead($string)
+function matchesDeadExceptWhenNotDead(string $string) : bool
 {
     // negative lookbehind
     return preg_match('/(?<!not )dead/', $string) === 1;
@@ -425,7 +425,7 @@ function matchesDeadExceptWhenNotDead($string)
  * @param string $string
  * @return bool
  */
-function matchesDystopiaOrUtopia($string)
+function matchesDystopiaOrUtopia(string $string) : bool
 {
     // positive lookbehind
     return preg_match('/(?<=dys|u)topia/', $string) === 1;
@@ -442,14 +442,18 @@ function matchesDystopiaOrUtopia($string)
  * PHP preg_ functions support Unicode when the /u modifier is appended to the regular expression. *
  * You can also use Unicode categories-specific notation.                                          *
  *                                                                                                 *
- * Check out https://www.regular-expressions.info/unicode.html                                     *
+ * Check out https://www.regular-expressions.info/unicode.html
+ *
+ * "Each Unicode character belongs to a certain category.
+ * You can match a single character belonging to the “letter” category with \p{L}.
+ * You can match a single character not belonging to that category with \P{L}."
  ***************************************************************************************************/
 
 /**
  * @param string $string
  * @return bool
  */
-function matchesWithUnicodeSupport($string)
+function matchesWithUnicodeSupport(string $string) : bool
 {
     return preg_match('/\w/u', $string) === 1;
 }
@@ -460,7 +464,7 @@ function matchesWithUnicodeSupport($string)
  * @param string $string
  * @return bool
  */
-function matchesAnyLetterInAnyLanguage($string)
+function matchesAnyLetterInAnyLanguage(string $string) : bool
 {
     return preg_match('/\p{L}/', $string) === 1;
 }
@@ -471,13 +475,12 @@ function matchesAnyLetterInAnyLanguage($string)
  * @param string $character
  * @return bool
  */
-function matchesMathematicalSymbol($character)
+function matchesMathematicalSymbol(string $character) : bool
 {
-    return preg_match('/\p{Sm}*/u', $character) === 1;
+    return preg_match('/\p{Sm}/u', $character) === 1;
 }
 
 //writeBoolean(matchesMathematicalSymbol('≈'));
-
 
 // Regular expressions are very useful, but also very time-consuming. For this reason, limiting their use is highly recommended.
 // E.g.: use str_replace() instead of preg_replace() where possible.
@@ -487,7 +490,7 @@ function matchesMathematicalSymbol($character)
  ***************/
 
 //writeArray(preg_grep('/(css|js)/', ['portal.css', 'mortals.js', 'temple.php']));
-//writeArray(preg_grep('/(jpg|png)/', ['portal.css', 'mortals.js', 'temple.php'], PREG_GREP_INVERT));
+//writeArray(preg_grep('/(css|js)/', ['portal.css', 'mortals.js', 'temple.php'], PREG_GREP_INVERT));
 
 
 /***********************************
@@ -508,7 +511,7 @@ $htmlString = "<p>paragraph</p><span>span</span><ol><li>list1</li><li>list2</li>
 //writeArray(preg_split('/<\/?[a-z]+>/', $htmlString, null, PREG_SPLIT_NO_EMPTY));
 
 $string = 'the oldest and strongest kind of fear is fear of the unknown';
-//writeArray(str_split($string));
+//writeArray(str_split(string $string) : bool);
 //writeArray(explode(' ', $string));
 
 
@@ -536,9 +539,9 @@ $string = 'the oldest and strongest kind of fear is fear of the unknown';
  * @param $string
  * @return array
  */
-function extractURL($string)
+function extractURL(string $string) : array
 {
-    preg_match('/(?:http)\:\/\/[a-zA-Z0-9\-]+\.[a-zA-Z]{2,3}/', $string, $matches);
+    preg_match('/http\:\/\/[a-zA-Z0-9\-]+\.[a-zA-Z]{2,3}\//', $string, $matches);
 
     return $matches;
 }
@@ -549,7 +552,7 @@ function extractURL($string)
  * @param $string
  * @return array
  */
-function extractFullName($string)
+function extractFullName(string $string) : array
 {
     preg_match('/[A-Z][a-z]+ [A-Z][a-z]+/', $string, $matches);
 
