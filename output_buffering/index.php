@@ -52,11 +52,11 @@ function capitalize(string $buffer) : string
 }
 
 
-/***************************************************************************
- * Discussion - reasons for output buffering:                              *
- * - when should the body of a request be sent in relation to its headers? *
- * - should output always be displayed?                                    *
- * - render output once vs in pieces?                                      *
+/****************************************************************************
+ * Discussion - reasons for output buffering:                               *
+ * - when should the body of a response be sent in relation to its headers? *
+ * - should output always be displayed?                                     *
+ * - render output once vs in pieces?                                       *
  ***************************************************************************/
 
 //ob_start();
