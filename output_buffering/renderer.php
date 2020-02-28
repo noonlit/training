@@ -20,7 +20,7 @@ class Renderer {
 
         $content = ob_get_contents();
 
-        ob_get_clean();
+        ob_end_clean();
 
         $stream = Stream::createFromString($content);
         $response = new Response($stream);
